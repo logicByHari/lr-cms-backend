@@ -11,7 +11,16 @@ process.on('SIGINT', () => {
   process.exit(0)
 })
 
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION 💥', err)
+  process.exit(1)
+})
+
+process.on('unhandledRejection', (err) => {
+  console.error('UNHANDLED REJECTION 💥', err)
+  process.exit(1)
+})
+
 app.listen(config.PORT, () => {
   console.log(`Server is running on port ${config.PORT}`)
-  console.log(`Documentation available at http://localhost:${config.PORT}/swagger`)
 })

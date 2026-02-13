@@ -1,11 +1,9 @@
-import 'reflect-metadata'
 import express from 'express'
 import cors from 'cors'
 import config from '@/config/env.js'
 import helmet from 'helmet'
-
-/* Import all modules */
-import '$/index.js'
+import { globalErrorHandler } from './errors/globalErrorHandler.js'
+import router from './routes.js'
 
 const app = express()
 
@@ -22,6 +20,9 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
-/* Build route and middleware */
+app.use(router)
+
+/* Error Handling */
+app.use(globalErrorHandler)
 
 export default app
