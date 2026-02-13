@@ -24,8 +24,7 @@
 
     "paths": {
       "@/*": ["./src/*"],
-      "$/*": ["./src/modules/*"],
-      "~/*": ["./src/framework/*"]
+      "$/*": ["./src/modules/*"]
     }
   },
   "include": ["src/**/*.ts", "drizzle.config.ts"],

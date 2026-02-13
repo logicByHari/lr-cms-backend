@@ -20,7 +20,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
-app.use(router)
+app.use('/api', router)
 
 /* Error Handling */
 app.use(globalErrorHandler)
