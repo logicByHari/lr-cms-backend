@@ -4,9 +4,9 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
 
-    "rootDir": "src",
+    "rootDir": "./",
     "outDir": "dist",
-
+    "baseUrl": "./",
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -28,6 +28,6 @@
       "~/*": ["./src/framework/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts", "drizzle.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

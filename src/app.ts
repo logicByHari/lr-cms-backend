@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import config from '@/config/env.js'
+import appConfig from '@/config/env-config.js'
 import helmet from 'helmet'
 import { globalErrorHandler } from './errors/globalErrorHandler.js'
 import router from './routes.js'
@@ -9,7 +9,7 @@ const app = express()
 
 /* Security Middleware */
 app.use(helmet())
-app.use(cors({ origin: config.CORS_ORIGIN }))
+app.use(cors({ origin: appConfig.CORS_ORIGIN }))
 
 /* Body Parsing */
 app.use(express.json({ limit: '10mb' }))

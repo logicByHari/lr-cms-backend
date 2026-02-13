@@ -1,5 +1,5 @@
 import app from './app.js'
-import config from '@/config/env.js'
+import appConfig from '@/config/env-config.js'
 
 process.on('SIGTERM', () => {
   console.log('SIGTERM received, shutting down gracefully')
@@ -21,6 +21,6 @@ process.on('unhandledRejection', (err) => {
   process.exit(1)
 })
 
-app.listen(config.PORT, () => {
-  console.log(`Server is running on port ${config.PORT}`)
+app.listen(appConfig.PORT, () => {
+  console.log(`Server is running on port ${appConfig.PORT}`)
 })
