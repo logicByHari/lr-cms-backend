@@ -2,7 +2,9 @@ CREATE TYPE "public"."paymentStatusEnum" AS ENUM('SUCCESS', 'FAIL', 'PENDING', '
 CREATE TYPE "public"."userRoleEnum" AS ENUM('SUPER_ADMIN', 'ORGANIZATION_ADMIN', 'ORGANIZATION_USER');--> statement-breakpoint
 CREATE TABLE "discounts" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"percentage" numeric NOT NULL
+	"percentage" numeric NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "organizations" (
@@ -26,7 +28,9 @@ CREATE TABLE "paymentPlans" (
 	"effectiveTo" timestamp,
 	"effectiveFrom" timestamp,
 	"pricePerInvocation" numeric NOT NULL,
-	"isActive" boolean DEFAULT false
+	"isActive" boolean DEFAULT false,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "payments" (
@@ -35,7 +39,9 @@ CREATE TABLE "payments" (
 	"amount" numeric NOT NULL,
 	"paymentPlanId" uuid,
 	"numberOfInvocations" integer NOT NULL,
-	"status" "paymentStatusEnum" NOT NULL
+	"status" "paymentStatusEnum" NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "serviceBalances" (
@@ -43,14 +49,18 @@ CREATE TABLE "serviceBalances" (
 	"organizationId" uuid,
 	"serviceId" uuid,
 	"allowedPostPaidInvocatins" integer DEFAULT 0 NOT NULL,
-	"availableNumberOfInvocations" integer DEFAULT 0 NOT NULL
+	"availableNumberOfInvocations" integer DEFAULT 0 NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "services" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
 	"basePrice" numeric NOT NULL,
-	"isActive" boolean DEFAULT false NOT NULL
+	"isActive" boolean DEFAULT false NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "users" (

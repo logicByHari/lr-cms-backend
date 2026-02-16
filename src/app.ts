@@ -4,7 +4,7 @@ import appConfig from '@/config/env-config.js'
 import helmet from 'helmet'
 import { globalErrorHandler } from './errors/globalErrorHandler.js'
 import { bindControllers } from './decorators/index.js'
-import { UserController } from './modules/user/user.controller.js'
+import BoundControllers from '$/bound-controllers.js'
 
 const app = express()
 
@@ -22,7 +22,7 @@ app.get('/health', (_req, res) => {
 })
 
 /* Bind Route */
-bindControllers(app, [UserController])
+bindControllers(app, BoundControllers)
 
 /* Error Handling */
 app.use(globalErrorHandler)

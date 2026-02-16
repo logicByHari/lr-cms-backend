@@ -8,7 +8,7 @@ import { loggerMiddleware, authMiddleware } from '@/utils/middleware/example-mid
 @Controller('user')
 export class UserController {
   @Post()
-  @UseMiddleware(loggerMiddleware)
+  // @UseMiddleware(loggerMiddleware)
   createUser(req: Request, res: Response) {
     const validateBody = CreateUserZodSchema.safeParse(req.body)
     if (!validateBody.success) {
