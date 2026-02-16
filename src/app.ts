@@ -3,7 +3,7 @@ import cors from 'cors'
 import appConfig from '@/config/env-config.js'
 import helmet from 'helmet'
 import { globalErrorHandler } from './errors/globalErrorHandler.js'
-import { bindControllers } from './cors/bindControllers.js'
+import { bindControllers } from './decorators/index.js'
 import { UserController } from './modules/user/user.controller.js'
 
 const app = express()
@@ -17,7 +17,7 @@ app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 /* Health check endpoint */
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 

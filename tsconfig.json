@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+    "lib": ["ES2022", "ESNext.Decorators"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
 
@@ -19,8 +20,6 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    // "experimentalDecorators": true,
-    // "emitDecoratorMetadata": true,
 
     "paths": {
       "@/*": ["./src/*"],
