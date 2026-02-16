@@ -3,7 +3,8 @@ import cors from 'cors'
 import appConfig from '@/config/env-config.js'
 import helmet from 'helmet'
 import { globalErrorHandler } from './errors/globalErrorHandler.js'
-import router from './routes.js'
+import { bindControllers } from './cors/bindControllers.js'
+import { UserController } from './modules/user/user.controller.js'
 
 const app = express()
 
@@ -20,7 +21,8 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
-app.use('/api', router)
+/* Bind Route */
+bindControllers(app, [UserController])
 
 /* Error Handling */
 app.use(globalErrorHandler)

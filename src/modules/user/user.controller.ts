@@ -2,8 +2,11 @@ import { Request, Response } from 'express'
 import userService from './user.service.js'
 import { CreateUserZodSchema } from './schema/user.schema.js'
 import z from 'zod'
+import { Controller, Get, Post } from '@/cors/decorators.js'
 
-class UserController {
+@Controller('/user')
+export class UserController {
+  @Post('')
   createUser(req: Request, res: Response) {
     const validateBody = CreateUserZodSchema.safeParse(req.body)
     if (!validateBody.success) {
@@ -15,5 +18,3 @@ class UserController {
     return userService.createUser(res, req.body)
   }
 }
-
-export default new UserController()
