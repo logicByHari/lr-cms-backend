@@ -1,5 +1,5 @@
-import { userSchema } from '$/user/schema/user.schema';
-import { discountSchema } from '$/discount/schema/discounts.schema';
+import { userSchema } from '$/user/schema/user.schema.js'
+import { discountSchema } from '$/discount/schema/discounts.schema.js'
 import {
   pgTable,
   uuid,
@@ -9,7 +9,13 @@ import {
   boolean,
   timestamp,
   numeric,
-} from 'drizzle-orm/pg-core';
+} from 'drizzle-orm/pg-core'
+import {
+  insertModelZodSchema,
+  T_GetInsertModel,
+  T_GetSelectModel,
+  updateModelZodSchema,
+} from '@/modules/db/drizzle.types.js'
 
 export const organizationSchema = pgTable('organizations', {
   id: uuid().defaultRandom().primaryKey().notNull(),
@@ -23,4 +29,12 @@ export const organizationSchema = pgTable('organizations', {
   allowedNumberOfUsers: integer().notNull().default(5),
   createdAt: timestamp().defaultNow().notNull(),
   updatedAt: timestamp().defaultNow().notNull(),
-});
+})
+
+/* export types */
+export type ICreateOrganization = T_GetInsertModel<typeof organizationSchema>
+export type IUpdateOrganization = T_GetSelectModel<typeof organizationSchema>
+
+/* export zod schema */
+export const CreateOrganizationZodSchema = insertModelZodSchema(organizationSchema)
+export const UpdateOrganizationZodSchema = updateModelZodSchema(organizationSchema)
