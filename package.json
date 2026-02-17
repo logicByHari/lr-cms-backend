@@ -11,6 +11,7 @@
     "clear": "rm -rf dist",
     "format": "prettier --write .",
     "db:generate": "NODE_OPTIONS='--import tsx' drizzle-kit generate",
+    "db:studio": "NODE_OPTIONS='--import tsx' drizzle-kit studio --port=3003 --verbose",
     "db:migrate": "NODE_OPTIONS='--import tsx' drizzle-kit migrate"
   },
   "keywords": [],
